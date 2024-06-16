@@ -1,8 +1,11 @@
-from base_model import *
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
+from app.data_models.base_model import DexBaseModel
 
 
 class DexUser(DexBaseModel):
     __tablename__ = 'dex_user'
+    __table_args__ = {'schema': 'public'} 
     
     telegram_id = Column(String, primary_key=True, index=True)
     wallet_address = Column(String, nullable=False)
