@@ -6,7 +6,7 @@ from typing import AsyncGenerator
 
 class DexDatabase:
     def __init__(self):
-        self.database_url = "postgresql+asyncpg://obelisk_dex_admin:hmtmUh8r0tJheehpqu1L@localhost/ton_dex"
+        self.database_url = "postgresql+asyncpg://obelisk_dex_admin:hmtmUh8r0tJheehpqu1L@db:5432/ton_dex"
         self.engine = create_async_engine(self.database_url, echo=True)
         self.async_session = sessionmaker(
             bind=self.engine,

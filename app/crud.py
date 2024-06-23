@@ -1,10 +1,12 @@
 from fastapi import HTTPException
 from sqlalchemy.future import select
 from sqlalchemy import TIMESTAMP
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.data_models import transaction, dex_user, social_links
+from data_models import transaction, dex_user, social_links
+from refferal_code_generator import CodeGenerator
 from typing import Coroutine
-from app.refferal_code_generator import CodeGenerator
+
 
 
 class DexCrud:
@@ -55,6 +57,10 @@ class DexCrud:
         await database.refresh(db_transaction)
         return db_transaction
     
+    async def get_user_with_details(db: AsyncSession, telegram_id: str):
+        result = await db.execute(select(dex_user.DexUser).filter(dex_user.DexUser.telegram_id == telegram_id).options(selectinload(dex_user.DexUser.transactions), selectinload(dex_user.DexUser.social_link)))
+        return result.scalars().first()
+
     @staticmethod
     async def set_social_link(database: AsyncSession, telegram_id: str, social_link_type: str, link: str) -> social_links.SocialLink:
         result = await database.execute(select(social_link.SocialLink).filter(social_link.SocialLink.telegram_id == telegram_id))

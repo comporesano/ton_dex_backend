@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, TIMESTAMP, ForeignKey
 from sqlalchemy.orm import relationship
-from app.data_models.base_model import DexBaseModel
+from data_models.base_model import DexBaseModel
 
 
 class Transaction(DexBaseModel):

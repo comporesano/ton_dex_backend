@@ -4,7 +4,7 @@ async def test_create_user():
     async with httpx.AsyncClient() as client:
         url = "http://localhost:8000/user/"
         payload = {
-            "telegram_id": "user123",
+            "telegram_id": "lox007",
             "wallet_address": "0xabc...",
             "claimed_code": "claim456"
         }

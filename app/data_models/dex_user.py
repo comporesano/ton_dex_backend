@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from app.data_models.base_model import DexBaseModel
+from data_models.base_model import DexBaseModel
 
 
 class DexUser(DexBaseModel):

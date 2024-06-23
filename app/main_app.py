@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Depends, HTTPException, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import JSONResponse
-from app.database.database import DexDatabase
-from app.data_models import transaction, dex_user, social_links, base_model
-from app import crud
+from database.database import DexDatabase
+from data_models import base_model
+import crud
 
 db = DexDatabase()
 
